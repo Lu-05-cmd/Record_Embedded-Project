@@ -1,6 +1,6 @@
 /**********************************************************************************************************************************************************************
  * @file    : afio.h
- * @brief   : AFIO (Alternate Function I/O) driver interface for STM32F10x devices.
+ * @brief   : AFIO (Alternate Function I/O) driver interface for STM32F103xx devices.
  *              - This header file provides AFIO register map definition, AFIO base address
  *              - Enumeration for EXTI line, GPIO port mapping, and debug configuration
  * @author  : lu-05-cmd
@@ -9,13 +9,13 @@
  * 
  * @note : 
  *      - Designed according to STM32F10x Reference Manual (RM0008).
- *      - AFIO peripheral is varialble only on STM32F1 series.
+ *      - AFIO peripheral is varialble only on STM32F103xx series.
  *      - The AFIO clock must be enable in RCC before using this driver.
  **********************************************************************************************************************************************************************/
 
 
-#ifndef STM32F10x_AFIO_H
-#define STM32F10x_AFIO_H
+#ifndef STM32F103xx_AFIO_H
+#define STM32F103xx_AFIO_H
 
 
 /*INCLUDE============================================================================================================================================================*/
@@ -144,4 +144,4 @@ void AFIO_TIM1Remap(Function_RemapTIM1_t status);
 void AFIO_TIM2Remap(Function_RemapTIM2_t status);
 void AFIO_TIM3Remap(Function_RemapTIM3_t status);
 void AFIO_TIM4Remap(Function_2Remap_t status);
-#endif  /*  STM32F10x_AFIO_H    */
+#endif  /*  STM32F103xx_AFIO_H    */
