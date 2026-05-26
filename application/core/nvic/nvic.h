@@ -1,18 +1,27 @@
-/**********************************************************************************************************************************************************************
- * @file    : nvic.h
- * @brief   : 
- *              - Generic NVIC core interface for STM32F103 driver.
- *              - This file provides register definitions, base addresses and functions basic
- * @author  : lu-05-cmd
- * @date    : November, 29 2025
- * 
- * @note : 
- *          - NVIC priority configuration depends on the selected priority grouping.
- *          - Lower priority value indicates higher interrupt priority.
- *          - Make sure to configure priority grouping before setting interrupt priorities.
- *          - This implementation is specific to Cortex-M3 (STM32F103).
- **********************************************************************************************************************************************************************/
-
+/**************************************************************************************************
+ * @file    nvic.h
+ * @brief   Bare-metal NVIC driver for STM32F103xx microcontrollers
+ *
+ * @details
+ * This file provides:
+ *  - NVIC register definitions
+ *  - IRQ enable/disable APIs
+ *  - Interrupt priority configuration
+ *  - Pending interrupt management
+ *  - Cortex-M3 interrupt vector definitions
+ *
+ * @author  lu-05-cmd
+ * @date    2025-11-29
+ * @version 0.1.0
+ *
+ * @note
+ *  - Developed for embedded systems learning and practice
+ *  - Fully register-level programming (Bare-metal)
+ *  - Based on ARM Cortex-M3 architecture
+ *  - Applicable to STM32F103xx series devices
+ *  - NVIC priority configuration depends on priority grouping
+ *
+ **************************************************************************************************/
 
 #ifndef STM32F103xx_NVIC_H
 #define STM32F103xx_NVIC_H
