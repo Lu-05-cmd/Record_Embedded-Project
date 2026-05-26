@@ -1,23 +1,25 @@
-/**********************************************************************************************************************************************************************
- * @file    : rcc.h
- * @brief   : 
- *              - Generic RCC driver interface for STM32F103xx Series.
- *              - Based on STM32F103xx Reference Manual (RM0008).
- *              - This file provides register definitions and base addresses.
- *              - Configuration enums and public APIs, intended to be reused 
- *                across STM32103xx
- * @author  : lu-05-cmd
- * @date    : January, 1 2026
- * @version : 0.1
- * 
- * @note    : 
- *              - Applicable to STM32F103xx devices only.
- *              - Clock tree configuration is specific to  STM32F103xx series.
- *              - Peripheral clocks must be enabled before accessing peripheral register.
- *              - Provides peripheral clock enable and reset control.
- *              - Some peripheral clock domains may vary between device variants.
- **********************************************************************************************************************************************************************/
-
+/**************************************************************************************************
+ * @file    rcc.h
+ * @brief   Bare-metal RCC driver for STM32F103xx microcontrollers
+ *
+ * @details
+ * This file provides:
+ *  - RCC register definitions
+ *  - Clock configuration APIs
+ *  - Peripheral clock enable/reset control
+ *  - System clock source configuration
+ *
+ * @author  lu-05-cmd
+ * @date    2026-01-01
+ * @version 0.1.0
+ *
+ * @note
+ *  - Developed for embedded systems learning and practice
+ *  - Fully register-level programming (Bare-metal)
+ *  - Based on STM32F10x Reference Manual (RM0008)
+ *  - Applicable to STM32F103xx series devices
+ *
+ **************************************************************************************************/
 #ifndef STM32F103xx_RCC_H    
 #define STM32F103xx_RCC_H
 

@@ -1,18 +1,25 @@
-/**********************************************************************************************************************************************************************
- * @file    : timer.h
- * @brief   :      
- *              - Generic TIMER driver interface for STM32f103xx microcontroller.
- *              - This file provides register definitions, base address.
- *              - Configuration enum, add public ADIs intended tobe reused across multiple STM32F103xx.
- * @author  : lu-05-cmd
- * @date    : Junuary, 3 2026
- * @version : 0.1
- * 
- * @note    : 
- *              - Base on STM32F103xx Reference Manual (RM0008).
- *              - Implementation details may vary depending on the TIM instance.
- **********************************************************************************************************************************************************************/
-
+/**************************************************************************************************
+ * @file    timer.h
+ * @brief   Bare-metal TIMER driver for STM32F103xx microcontrollers
+ *
+ * @details
+ * This file provides:
+ *  - TIM register definitions
+ *  - Timer base configuration APIs
+ *  - PWM generation support
+ *  - Timer interrupt and flag control
+ *
+ * @author  lu-05-cmd
+ * @date    2026-01-03
+ * @version 0.1.0
+ *
+ * @note
+ *  - Developed for embedded systems learning and practice
+ *  - Fully register-level programming (Bare-metal)
+ *  - Based on STM32F10x Reference Manual (RM0008)
+ *  - Implementation details may vary depending on TIM instance
+ *
+ **************************************************************************************************/
 #ifndef STM32F103xx_TIMER_H
 #define STM32F103xx_TIMER_H
 

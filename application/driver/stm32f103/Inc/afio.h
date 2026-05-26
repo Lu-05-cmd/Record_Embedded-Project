@@ -1,17 +1,26 @@
-/**********************************************************************************************************************************************************************
- * @file    : afio.h
- * @brief   : AFIO (Alternate Function I/O) driver interface for STM32F103xx devices.
- *              - This header file provides AFIO register map definition, AFIO base address
- *              - Enumeration for EXTI line, GPIO port mapping, and debug configuration
- * @author  : lu-05-cmd
- * @date    : Juanary, 31 2025
- * @version : 0.1
- * 
- * @note : 
- *      - Designed according to STM32F10x Reference Manual (RM0008).
- *      - AFIO peripheral is varialble only on STM32F103xx series.
- *      - The AFIO clock must be enable in RCC before using this driver.
- **********************************************************************************************************************************************************************/
+/**************************************************************************************************
+ * @file    afio.h
+ * @brief   Bare-metal AFIO driver for STM32F103xx microcontrollers
+ *
+ * @details
+ * This file provides:
+ *  - AFIO register definitions
+ *  - AFIO remap configuration APIs
+ *  - EXTI line configuration
+ *  - Debug port configuration
+ *
+ * @author  lu-05-cmd
+ * @date    2025-01-31
+ * @version 0.1.0
+ *
+ * @note
+ *  - Developed for embedded systems learning and practice
+ *  - Fully register-level programming (Bare-metal)
+ *  - Based on STM32F10x Reference Manual (RM0008)
+ *  - Applicable to STM32F103xx series devices
+ *  - AFIO clock must be enabled before using this driver
+ *
+ **************************************************************************************************/
 
 
 #ifndef STM32F103xx_AFIO_H

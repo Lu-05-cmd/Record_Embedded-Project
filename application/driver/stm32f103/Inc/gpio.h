@@ -1,18 +1,26 @@
-/**********************************************************************************************************************************************************************
- * @file    : gpio.h
- * @brief   : 
- *              - Generic GPIO driver interface for STM32F103xx devices.
- *              - This file provides register definitions, base addresses.
- * @author  : lu-05-cmd
- * @date    : January, 30 2026.
- * @version : 0.1
- * 
- * @note : 
- *          - This is file designed based on STM32F103xx reference manual (RM0008).
- *          - GPIO register layout follows the STM32F103 memory map and register description.
- *          - Implementation details may vary depending on the specific STM32F103xx devices.
- **********************************************************************************************************************************************************************/
+/**************************************************************************************************
+ * @file    gpio.h
+ * @brief   Bare-metal GPIO driver for STM32F103xx microcontrollers
+ *
+ * @details
+ * This file provides:
+ *  - GPIO register definitions
+ *  - GPIO peripheral base addresses
+ *  - GPIO configuration APIs
+ *  - Pin read/write operations
+ *
+ * @author  lu-05-cmd
+ * @date    2026-01-30
+ * @version 0.1.0
+ *
+ * @note
+ *  - Developed for embedded systems learning and practice
+ *  - Fully register-level programming (Bare-metal)
+ *  - Based on STM32F10x Reference Manual (RM0008)
+ *
+ **************************************************************************************************/
 
+ 
 #ifndef STM32F103xx_GPIO_H    
 #define STM32F103xx_GPIO_H
 
