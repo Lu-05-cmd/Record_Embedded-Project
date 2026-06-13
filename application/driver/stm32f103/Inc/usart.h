@@ -10,7 +10,7 @@
  *  - Interrupt and DMA support
  *  - USART status and flag management
  *
- * @author  Tuan Doan
+ * @author  lu-05-cmd
  * @date    2026-02-06
  * @version 0.1.0
  *
