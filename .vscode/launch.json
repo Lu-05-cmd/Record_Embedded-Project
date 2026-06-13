@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug STM32",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/firmware.elf",
+
+            "device": "STM32F103C8",
+            "interface": "swd",
+
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f1x.cfg"
+            ],
+
+            "svdFile": "${workspaceFolder}/application/svd/STM32F103.svd",
+            "preLaunchTask": "build stm32"
+        }
+    ]
+}
