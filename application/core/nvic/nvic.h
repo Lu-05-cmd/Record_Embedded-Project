@@ -164,5 +164,6 @@ uint8_t NVIC_GetPendingIRQ(NVIC_IRQn_Position_t IRQn);
 
 void NVIC_SetPriority(NVIC_IRQn_Position_t IRQn, uint16_t prio);
 uint8_t NVIC_GetPriority(NVIC_IRQn_Position_t IRQn);
+uint32_t NVIC_GetActive(NVIC_IRQn_Position_t IRQn);
 #endif      /*   STM32F103xx_NVIC_H   */
 
