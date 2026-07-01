@@ -21,6 +21,7 @@
  
 /*INCLUDE============================================================================================================================================================*/
 #include <stdint.h>
+#include <stddef.h>
 #include "../Inc/adc.h"
 #include "../Inc/rcc.h"
 
@@ -744,7 +745,13 @@ ADC_Status_t ADC_DeInit(ADC_TypeDef *ADCx)
 
     ADC_Disable(ADCx);
 
-    RCC_ResetADC(ADCx);
+    if(ADCx == ADC1)
+    {
+        RCC_ResetADC(RCC_ADC1);
+    }else
+    {
+        RCC_ResetADC(RCC_ADC2);
+    }
 
     return ADC_STATUS_OK;
 }
