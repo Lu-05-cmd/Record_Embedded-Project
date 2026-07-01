@@ -151,6 +151,17 @@ typedef enum
     SPI_MODE_FAULT
 } SPI_Status_t;
 
+/**
+ * @brief SPI functional state
+ * @note  Defines the functional state values used to enable or disable SPI features.
+ *          - `DISABLE`: Disable the SPI feature.
+ *          - `ENABLE`: Enable the SPI feature.
+ */
+typedef enum
+{
+    DISABLE = 0U,
+    ENABLE = 1U
+}SPI_State_t;
 
 /**
  * @brief SPI Clock Phase Configuration
@@ -253,11 +264,11 @@ typedef enum
  *          - Hardware management: NSS pin is managed by hardware and must be connected to the slave select line. In master mode, NSS pin is driven low when the SPI is enabled and high when disabled.
  *          - Software management: NSS pin is not used for hardware slave selection. The internal SSI bit is used to control the NSS signal level when software slave management is enabled.
  */
-typedef enum
-{
-    SPI_NSS_HARDWARE_MANAGEMENT,
-    SPI_NSS_SOFTWARE_MANAGEMENT
-} SPI_NSSMode_t;
+    typedef enum
+    {
+        SPI_NSS_HARDWARE_MANAGEMENT = 0U,
+        SPI_NSS_SOFTWARE_MANAGEMENT = SPI_CR1_SSM_MASK
+    } SPI_NSSMode_t;
 
 
 /**
@@ -558,15 +569,15 @@ void SPI_Enable(SPI_TypeDef *SPIx);
 SPI_Status_t SPI_Disable(SPI_TypeDef *SPIx, uint32_t timeout);
 
 /*<---SPI Transmit/Receive Polling--->*/
-SPI_Status_t SPI_Transmit_Polling(SPI_TypeDef *SPIx, uint16_t *tx_buffer, uint32_t len);
+SPI_Status_t SPI_Transmit_Polling(SPI_TypeDef *SPIx, const uint16_t *tx_buffer, uint32_t len);
 SPI_Status_t SPI_Receive_Polling(SPI_TypeDef *SPIx, uint16_t *rx_buffer, uint32_t len);
-SPI_Status_t SPI_TransmitReceive_Polling(SPI_TypeDef *SPIx, uint16_t *tx_buffer, uint16_t *rx_buffer, uint32_t len);
+SPI_Status_t SPI_TransmitReceive_Polling(SPI_TypeDef *SPIx, const uint16_t *tx_buffer, uint16_t *rx_buffer, uint32_t len);
 
 /*<---SPI Interrupt Configuration--->*/
 void SPI_ConfigInterrupt(SPI_TypeDef *SPIx, SPI_InterruptConfig_t *itr_type);
-SPI_Status_t SPI_Transmit_IT(SPI_TypeDef *SPIx, uint16_t *tx_buffer, uint32_t len);
+SPI_Status_t SPI_Transmit_IT(SPI_TypeDef *SPIx, const uint16_t *tx_buffer, uint32_t len);
 SPI_Status_t SPI_Receive_IT(SPI_TypeDef *SPIx, uint16_t *rx_buffer, uint32_t len);
-SPI_Status_t SPI_TransmitReceive_IT(SPI_TypeDef *SPIx, uint16_t *tx_buffer, uint16_t *rx_buffer, uint32_t len);
+SPI_Status_t SPI_TransmitReceive_IT(SPI_TypeDef *SPIx, const uint16_t *tx_buffer, uint16_t *rx_buffer, uint32_t len);
 
 /*<---SPI DMA Configuration--->*/
 void SPI_EnableDMA_Tx(SPI_TypeDef *SPIx);
@@ -582,10 +593,9 @@ void SPI_ClearCRCErrorFlag(SPI_TypeDef *SPIx);
 void SPI_ClearUDRFlag(SPI_TypeDef *SPIx);
 
 /*<---SPI Utility Functions--->*/
-
 void SPI_FlushRx(SPI_TypeDef *SPIx);
-/*<---SPI Set DataSize--->*/
 
+/*<---SPI Set DataSize--->*/
 void SPI_SetDataSize(SPI_TypeDef *SPIx, SPI_DataFrame_t frame);
 
 /*<---SPI Set CRC Polynomial--->*/
