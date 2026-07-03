@@ -239,20 +239,6 @@ typedef enum
     I2C_SMBUS_HOST
 } I2C_SMBusType_t;
 
-/**
- * 
- * 
- * @brief I2C ACK Position Enumeration
- * @note  This enumeration defines the ACK bit position behavior during data reception. It includes:
- *          - I2C_ACK_CURRENT_BYTE: ACK bit controls the current byte.
- *          - I2C_ACK_NEXT_BYTE: ACK bit controls the next byte.
- */
-typedef enum
-{
-    I2C_ACK_CURRENT_BYTE = 0U,
-    I2C_ACK_NEXT_BYTE
-} I2C_AckPosition_t;
-
 
 
 /**
@@ -282,6 +268,22 @@ typedef enum
     I2C_DIRECTION_WRITE = 0U,
     I2C_DIRECTION_READ
 } I2C_Direction_t;
+
+
+/**
+ * 
+ * 
+ * @brief I2C ACK Position Enumeration
+ * @note  This enumeration defines the ACK bit position behavior during data reception. It includes:
+ *          - I2C_ACK_CURRENT_BYTE: ACK bit controls the current byte.
+ *          - I2C_ACK_NEXT_BYTE: ACK bit controls the next byte.
+ */
+typedef enum
+{
+    I2C_ACK_CURRENT_BYTE = 0U,
+    I2C_ACK_NEXT_BYTE = I2C_CR1_POS_MASK
+} I2C_AckPosition_t;
+
 
 /**
  * 
