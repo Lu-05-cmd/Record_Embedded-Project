@@ -426,21 +426,21 @@ typedef struct
 /* Initialization and Configuration Functions */
 I2C_Status_t I2C_Init(I2C_TypeDef *I2Cx, I2C_Config_t *i2c_cfg);
 void I2C_DeInit(I2C_TypeDef *I2Cx);
-void I2C_SetOwnAddress(I2C_TypeDef *I2Cx, uint8_t address);
+void I2C_SetOwnAddress(I2C_TypeDef *I2Cx, uint8_t addr);
 void I2C_SetSpeed(I2C_TypeDef *I2Cx,
                   uint32_t pclk1_hz,
                   uint32_t scl_hz,
                   I2C_DutyCycle_t duty_cycle);
 
 /* Address Functions */
-void I2C_SendAddress(I2C_TypeDef *I2Cx,
+I2C_Status_t I2C_SendAddress(I2C_TypeDef *I2Cx,
                      uint8_t address,
-                     I2C_Direction_t direction);
+                     I2C_Direction_t dir);
 
 void I2C_ClearADDRFlag(I2C_TypeDef *I2Cx);
 
 /* Error Check Functions */
-void I2C_ClearErrorFlag(I2C_TypeDef *I2Cx, I2C_ErrorFlag_t flag);
+void I2C_ClearErrorFlag(I2C_TypeDef *I2Cx, I2C_ErrorFlag_t err_flag);
 
 /* ACK Configuration Functions */
 void I2C_SetACKPosition(I2C_TypeDef *I2Cx,
