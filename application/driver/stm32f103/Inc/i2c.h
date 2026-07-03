@@ -297,12 +297,12 @@ typedef enum
  */
 typedef enum
 {
-    I2C_ERROR_BUS = 0U,
-    I2C_ERROR_ARBITRATION_LOSS,
-    I2C_ERROR_ACK_FAIL,
-    I2C_ERROR_OVERRUN,
-    I2C_ERROR_TIMEOUT,
-    I2C_ERROR_PEC
+    I2C_ERROR_BUS = I2C_SR1_BERR_MASK,
+    I2C_ERROR_ARBITRATION_LOSS =I2C_SR1_ARLO_MASK,
+    I2C_ERROR_ACK_FAIL = I2C_SR1_AF_MASK,
+    I2C_ERROR_OVERRUN = I2C_SR1_OVR_MASK,
+    I2C_ERROR_TIMEOUT = I2C_SR1_TIMEOUT_MASK,
+    I2C_ERROR_PEC = I2C_SR1_PECERR_MASK
 } I2C_ErrorFlag_t;
 
 /*====================================================================================================================================================================
