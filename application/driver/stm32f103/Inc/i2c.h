@@ -402,9 +402,9 @@ typedef struct
 typedef struct
 {
     uint16_t freq;                 
-    uint8_t error_interrupt;       
-    uint8_t event_interrupt;       
-    uint8_t buffer_interrupt;      
+    I2C_State_t error_interrupt;       
+    I2C_State_t event_interrupt;       
+    I2C_State_t buffer_interrupt;      
 } I2C_CR2_Config_t;
 
 /**
