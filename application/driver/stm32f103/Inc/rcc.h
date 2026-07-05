@@ -69,6 +69,8 @@ typedef struct
 /*--Clock Configuration Register*/
 #define RCC_CFGR_SW_POS             (0U)
 #define RCC_CFGR_SWS_POS            (2U)
+#define RCC_CFGR_PPRE1_POS          (8U)
+#define RCC_CFGR_PPRE2_POS          (11U)
 #define RCC_CFGR_PLLSRC_POS         (16U)
 #define RCC_CFGR_PLLXTPRE_POS       (17U)
 #define RCC_CFGR_PLLMUL_POS         (18U)
@@ -140,6 +142,8 @@ typedef struct
 /*CFGR_MASK*/
 #define RCC_CFGR_SW_MASK            (1U << RCC_CFGR_SW_POS)
 #define RCC_CFGR_SWS_MASK           (0x3U << RCC_CFGR_SW_POS)
+#define RCC_CFGR_PPRE1_MASK         (0x7U << RCC_CFGR_PPRE1_POS)
+#define RCC_CFGR_PPRE2_MASK         (0x7U << RCC_CFGR_PPRE2_POS)
 /*APB2RSTR_MASK*/
 #define RCC_APB2RSTR_AFIO_RESET_MASK    (1U << RCC_APB2RSTR_AFIORST_POS)
 #define RCC_APB2RSTR_GPIOA_RESET_MASK   (1U << RCC_APB2RSTR_IOPARST_POS)       
@@ -311,11 +315,5 @@ void RCC_SelectSYSCLK(RCC_SYSCLK_t src);
 
 void RCC_EnableTIMClock(RCC_TIM_t TIMx);
 void RCC_DisableTIMClock(RCC_TIM_t TIMx);
-
-/* RCC clock frequency functions */
-uint32_t RCC_GetSYSCLK(void);
-uint32_t RCC_GetHCLK(void);
-uint32_t RCC_GetPCLK1(void);
-uint32_t RCC_GetPCLK2(void);
 
 #endif  /*   STM32F103xx_RCC_H    */
