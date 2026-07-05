@@ -318,4 +318,9 @@ void RCC_SelectSYSCLK(RCC_SYSCLK_t src);
 void RCC_EnableTIMClock(RCC_TIM_t TIMx);
 void RCC_DisableTIMClock(RCC_TIM_t TIMx);
 
+uint32_t RCC_GetSYSCLK(void);
+uint32_t RCC_GetHCLK(void);
+uint32_t RCC_GetPCLK1(void);
+uint32_t RCC_GetPCLK2(void);
+
 #endif  /*   STM32F103xx_RCC_H    */
