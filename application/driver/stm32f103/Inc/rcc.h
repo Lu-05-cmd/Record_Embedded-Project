@@ -186,7 +186,8 @@ typedef struct
 #define RCC_APB1ENR_I2C1_MASK     (1U << RCC_APB1ENR_I2C1EN_POS)
 #define RCC_APB1ENR_I2C2_MASK     (1U << RCC_APB1ENR_I2C2EN_POS)
 
-
+#define HSE_VALUE 80000000U
+#define HSI_VALUE 80000000U
 /* ------------------------------------ GPIO Mode Enum -------------------------------- */
 typedef enum
 {
@@ -310,5 +311,11 @@ void RCC_SelectSYSCLK(RCC_SYSCLK_t src);
 
 void RCC_EnableTIMClock(RCC_TIM_t TIMx);
 void RCC_DisableTIMClock(RCC_TIM_t TIMx);
+
+/* RCC clock frequency functions */
+uint32_t RCC_GetSYSCLK(void);
+uint32_t RCC_GetHCLK(void);
+uint32_t RCC_GetPCLK1(void);
+uint32_t RCC_GetPCLK2(void);
 
 #endif  /*   STM32F103xx_RCC_H    */
