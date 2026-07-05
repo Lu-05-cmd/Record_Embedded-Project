@@ -259,7 +259,7 @@ typedef enum
 typedef enum
 {
     I2C_DUTY_CYCLE_2 = 0U,
-    I2C_DUTY_CYCLE_16_9
+    I2C_DUTY_CYCLE_16_9 = I2C_CCR_DUTY_MASK
 } I2C_DutyCycle_t;
 
 /**
