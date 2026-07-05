@@ -27,6 +27,50 @@
 
 
 
+/**
+ * @brief Lookup table for PLL multiplication factors.
+ *
+ * @details Maps the RCC PLLMUL field encoding to the corresponding multiplication factor.
+ */
+static const uint16_t pll_mul_table[16] = 
+{
+    2, 3, 4, 5,
+    6, 7, 8, 9,
+    10, 11, 12, 13,
+    14, 15, 16, 16 
+};
+
+/**
+ * @brief Lookup table for AHB prescaler values.
+ *
+ * @details Maps the RCC HPRE field encoding to the effective AHB division factor.
+ */
+static const uint16_t ahb_prescaler[16] =
+{
+    1,1,1,1,
+    1,1,1,1,
+    2,4,8,16,
+    64,128,256,512
+};
+
+/**
+ * @brief Lookup table for APB prescaler values.
+ *
+ * @details Maps the RCC PPRE1/PPRE2 field encoding to the effective APB division factor.
+ */
+static const uint8_t apb_prescaler[8] = 
+{
+    1, 1, 1, 1,
+    2, 4, 8, 16 
+};
+
+
+
+
+
+
+
+
 /*********************************************************************************************************************************************************************
  * @brief Enable/Disable the clock for a specific GPIO port
  * 
@@ -451,5 +495,103 @@ void RCC_DisableTIMClock(RCC_TIM_t TIMx)
     else if(TIMx == RCC_TIM3)  RCC->APB1ENR &= ~RCC_APB1ENR_TIM3_MASK;
     else if(TIMx == RCC_TIM4)  RCC->APB1ENR &= ~RCC_APB1ENR_TIM4_MASK;
 }
+
+
+/*********************************************************************************************************************************************************************
+ * @brief Read the current system clock frequency.
+ *
+ * @return Current SYSCLK frequency in hertz.
+ *
+ * @details Determines the active clock source from the SWS bits in RCC_CFGR and computes the
+ * corresponding frequency for HSI, HSE, or PLL-based operation.
+ */
+uint32_t RCC_GetSYSCLK(void)
+{
+    uint32_t sysclk, pll_input, pllmul;
+    pllmul =  pll_mul_table[((RCC->CFGR >> RCC_CFGR_PLLMUL_POS) & 0x0FU)];
+
+    switch((RCC->CFGR & RCC_CFGR_SWS_MASK) >> RCC_CFGR_SWS_POS)
+    {
+    case 0x0U:
+        sysclk = HSI_VALUE;
+        break;
+
+    case 0x1U:
+        sysclk = HSE_VALUE;
+        break;
+
+    case 0x2U:
+        if(!(RCC->CFGR & (1U << RCC_CFGR_PLLSRC_POS)))
+        {
+            pll_input = HSI_VALUE / 2U;
+        }
+        else
+        {
+            pll_input = HSE_VALUE;
+
+            if((RCC->CFGR & (1U << RCC_CFGR_PLLXTPRE_POS)))
+                pll_input /= 2U;
+        }
+
+        sysclk = pll_input * pllmul;
+        break;
+    default:
+        return 0U;
+    }
+    return sysclk;
+}
+
+
+/*********************************************************************************************************************************************************************
+ * @brief Read the current AHB clock frequency.
+ *
+ * @return Current HCLK frequency in hertz.
+ *
+ * @details Computes the AHB clock from the system clock and the HPRE prescaler value stored in RCC_CFGR.
+ */
+uint32_t RCC_GetHCLK(void)
+{
+    uint32_t sysclk, hpre;
+    sysclk = RCC_GetSYSCLK();
+
+    hpre = (RCC->CFGR & RCC_CFGR_HPRE_MASK) >> RCC_CFGR_HPRE_POS;
+    
+    return sysclk / ahb_prescaler[hpre];
+}
+
+
+/*********************************************************************************************************************************************************************
+ * @brief Read the current APB1 peripheral clock frequency.
+ *
+ * @return Current APB1 clock frequency in hertz.
+ *
+ * @details Computes the APB1 clock from HCLK and the PPRE1 prescaler value stored in RCC_CFGR.
+ */
+uint32_t RCC_GetPCLK1(void)
+{
+    uint32_t hclk, ppre1;
+    hclk = RCC_GetHCLK();
+
+    ppre1 = (RCC->CFGR & RCC_CFGR_PPRE1_MASK) >> RCC_CFGR_PPRE1_POS;
+    return hclk / apb_prescaler[ppre1];
+}
+
+
+/*********************************************************************************************************************************************************************
+ * @brief Read the current APB2 peripheral clock frequency.
+ *
+ * @return Current APB2 clock frequency in hertz.
+ *
+ * @details Computes the APB2 clock from HCLK and the PPRE2 prescaler value stored in RCC_CFGR.
+ */
+uint32_t RCC_GetPCLK2(void)
+{
+    uint32_t hclk, ppre2;
+    hclk = RCC_GetHCLK();
+
+    ppre2 = (RCC->CFGR & RCC_CFGR_PPRE2_MASK) >> RCC_CFGR_PPRE2_POS;
+    return hclk / apb_prescaler[ppre2];
+}
+
 
 /* End of refactored RCC */
