@@ -69,6 +69,7 @@ typedef struct
 /*--Clock Configuration Register*/
 #define RCC_CFGR_SW_POS             (0U)
 #define RCC_CFGR_SWS_POS            (2U)
+#define RCC_CFGR_HPRE_POS           (4U)
 #define RCC_CFGR_PPRE1_POS          (8U)
 #define RCC_CFGR_PPRE2_POS          (11U)
 #define RCC_CFGR_PLLSRC_POS         (16U)
@@ -142,6 +143,7 @@ typedef struct
 /*CFGR_MASK*/
 #define RCC_CFGR_SW_MASK            (1U << RCC_CFGR_SW_POS)
 #define RCC_CFGR_SWS_MASK           (0x3U << RCC_CFGR_SW_POS)
+#define RCC_CFGR_HPRE_MASK          (0xF << RCC_CFGR_HPRE_POS)
 #define RCC_CFGR_PPRE1_MASK         (0x7U << RCC_CFGR_PPRE1_POS)
 #define RCC_CFGR_PPRE2_MASK         (0x7U << RCC_CFGR_PPRE2_POS)
 /*APB2RSTR_MASK*/
