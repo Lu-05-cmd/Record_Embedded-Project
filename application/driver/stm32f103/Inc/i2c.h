@@ -84,6 +84,7 @@ typedef struct
 
 /* OAR2 Register - Position Defines */
 #define I2C_OAR2_ENDUAL_POS           (0U)
+#define I2C_OAR2_ADD2_POS             (1U)
 
 /* SR1 Register - Position Defines */
 #define I2C_SR1_SB_POS                (0U) 
@@ -149,6 +150,7 @@ typedef struct
 
 /* OAR2 Register - Mask Defines */
 #define I2C_OAR2_ENDUAL_MASK          (1U << I2C_OAR2_ENDUAL_POS)
+#define I2C_OAR2_ADD2_MASK            (1U << I2C_OAR2_ADD2_POS)
 
 /* SR1 Register - Mask Defines */
 #define I2C_SR1_SB_MASK               (1U << I2C_SR1_SB_POS)
