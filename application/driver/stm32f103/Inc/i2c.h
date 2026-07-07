@@ -78,7 +78,10 @@ typedef struct
 #define I2C_CR2_ITBUFEN_POS           (10U)
 
 /* OAR1 Register - Position Defines */
-#define I2C_OAR1_ADDMODE_POS         (15U)
+#define I2C_OAR1_ADDMODE_POS          (15U)
+
+/* OAR2 Register - Position Defines */
+#define I2C_OAR2_ENDUAL_POS           (0U)
 
 /* SR1 Register - Position Defines */
 #define I2C_SR1_SB_POS                (0U) 
@@ -138,7 +141,10 @@ typedef struct
 #define I2C_CR2_ITBUFEN_MASK          (1U << I2C_CR2_ITBUFEN_POS)
 
 /* OAR1 Register - Mask Defines */
-#define I2C_OAR1_ADDMODE_MASK        (1U << I2C_OAR1_ADDMODE_POS)
+#define I2C_OAR1_ADDMODE_MASK         (1U << I2C_OAR1_ADDMODE_POS)
+
+/* OAR2 Register - Mask Defines */
+#define I2C_OAR2_ENDUAL_MASK          (1U << I2C_OAR2_ENDUAL_POS)
 
 /* SR1 Register - Mask Defines */
 #define I2C_SR1_SB_MASK               (1U << I2C_SR1_SB_POS)
@@ -369,6 +375,48 @@ typedef struct
 } I2C_Status_Info_t;
 
 /**
+ * @brief Selects the address mode for the I2C OAR1 register.
+ * @details Configures whether the peripheral uses a 7-bit or 10-bit slave address.
+ * @note The 10-bit mode is represented by the OAR1 ADDMODE bit mask.
+ */
+typedef enum
+{
+    OAR1_ADDMODE_7BIT_SLAVE = 0U, 
+    OAR1_ADDMODE_10BIT_SLAVE = I2C_OAR1_ADDMODE_MASK 
+} OAR1_ModeAddr_t;
+
+/**
+ * @brief Selects the dual-address mode for the I2C OAR2 register.
+ * @details Configures whether the secondary slave address is enabled together with OAR1.
+ * @note The value is mapped to the OAR2 ENDUAL bit.
+ */
+typedef enum
+{
+    OAR2_ENDUAL_ONLY_OAR1_7BIT = 0U,    
+    OAR2_ENDUAL_BOTH_7BIT = I2C_OAR2_ENDUAL_MASK
+} OAR2_DualMode_t;
+
+/**
+ * @brief Configuration structure for the I2C OAR1 register.
+ * @details Defines the slave address mode and the own address value used by the peripheral.
+ */
+typedef struct
+{
+    OAR1_ModeAddr_t addr_mode;  
+    uint16_t own_address; 
+} OAR1_Config_t;
+
+/**
+ * @brief Configuration structure for the I2C OAR2 register.
+ * @details Defines the dual-address mode and the secondary own address value.
+ */
+typedef struct
+{
+    OAR2_DualMode_t dual_mode;          
+    uint8_t own_address;                
+} OAR2_Config_t;
+
+/**
  * 
  * 
  * @brief I2C CR1 Configuration Structure
@@ -408,30 +456,39 @@ typedef struct
 } I2C_CR2_Config_t;
 
 /**
+ * @brief Combined configuration for the I2C OAR1/OAR2 registers.
+ * @details Groups the primary and secondary slave address configurations used by the peripheral.
+ */
+typedef struct
+{
+    OAR1_Config_t oar1_cfg;            
+    OAR2_Config_t oar2_cfg;            
+} I2C_OAR_Config_t;
+
+/**
  * @brief I2C Configuration Structure
  * @note This structure is used to configure the I2C peripheral, including settings for SCL frequency, own address, duty cycle, and CR1/CR2 configurations.
  *      - The scl_frequency_khz field specifies the desired SCL clock frequency in kHz (e.g., 100 kHz for standard mode, 400 kHz for fast mode). This value is used to calculate the appropriate values for the CCR and TRISE registers based on the APB1 clock frequency.
  *      - The own_address field specifies the 7-bit address of the I2C device when operating in slave mode. This address is typically left-shifted by 1 when writing to the OAR1 register, as the least significant bit is used to indicate read/write operations.
  *      - The duty_cycle field specifies the duty cycle for fast mode (400 kHz), which can be either 2 (standard 1:1) or 16/9. This setting is only relevant when the SCL frequency is set to 400 kHz.
  *      - The cr1_cfg and cr2_cfg fields are nested structures that contain the specific configuration settings for the I2C CR1 and CR2 registers, respectively. This allows for a comprehensive configuration of the I2C peripheral using a single structure, making it easier to initialize the peripheral with all necessary settings in one step.
+ *      - The OAR1/OAR2 address configuration for primary and secondary slave addresses.
  */
 typedef struct
 {
     uint16_t scl_frequency_khz;    
-    uint16_t own_address;          
-
     I2C_DutyCycle_t duty_cycle;    
 
     I2C_CR1_Config_t cr1_cfg;
     I2C_CR2_Config_t cr2_cfg;
+
+    I2C_OAR_Config_t oar_cfg;
 } I2C_Config_t;
 
 
 /*====================================================================================================================================================================
 |                             Function Declarations
 =====================================================================================================================================================================*/
-
-
 /* Initialization and Configuration Functions */
 I2C_Status_t I2C_Init(I2C_TypeDef *I2Cx, I2C_Config_t *i2c_cfg);
 void I2C_DeInit(I2C_TypeDef *I2Cx);
