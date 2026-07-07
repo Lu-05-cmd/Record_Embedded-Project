@@ -78,6 +78,8 @@ typedef struct
 #define I2C_CR2_ITBUFEN_POS           (10U)
 
 /* OAR1 Register - Position Defines */
+#define I2C_OAR1_ADD0_POS             (0U)
+#define I2C_OAR1_ADD_POS              (1U)
 #define I2C_OAR1_ADDMODE_POS          (15U)
 
 /* OAR2 Register - Position Defines */
@@ -141,6 +143,8 @@ typedef struct
 #define I2C_CR2_ITBUFEN_MASK          (1U << I2C_CR2_ITBUFEN_POS)
 
 /* OAR1 Register - Mask Defines */
+#define I2C_OAR1_ADD0_MASK            (1U << I2C_OAR1_ADD0_POS)
+#define I2C_OAR1_ADD_MASK             (1U << I2C_OAR1_ADD_POS)
 #define I2C_OAR1_ADDMODE_MASK         (1U << I2C_OAR1_ADDMODE_POS)
 
 /* OAR2 Register - Mask Defines */
