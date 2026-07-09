@@ -498,7 +498,7 @@ typedef struct
 /* Initialization and Configuration Functions */
 I2C_Status_t I2C_Init(I2C_TypeDef *I2Cx, I2C_Config_t *i2c_cfg);
 void I2C_DeInit(I2C_TypeDef *I2Cx);
-void I2C_SetOwnAddress(I2C_TypeDef *I2Cx, uint8_t addr);
+I2C_Status_t I2C_SetOwnAddress(I2C_TypeDef *I2Cx, uint8_t addr);
 void I2C_SetSpeed(I2C_TypeDef *I2Cx,
                   uint32_t pclk1_hz,
                   uint32_t scl_hz,
