@@ -82,11 +82,15 @@ typedef struct
 #define I2C_OAR1_ADD_POS              (1U)
 #define I2C_OAR1_ADD8_POS             (8U)
 #define I2C_OAR1_ADD9_POS             (9U)
+#define I2C_OAR1_BIT14_POS            (14U)
 #define I2C_OAR1_ADDMODE_POS          (15U)
 
 /* OAR2 Register - Position Defines */
 #define I2C_OAR2_ENDUAL_POS           (0U)
 #define I2C_OAR2_ADD2_POS             (1U)
+
+/* DR Register - Position Defines */
+#define I2C_DR_DR_POS                 (0U)
 
 /* SR1 Register - Position Defines */
 #define I2C_SR1_SB_POS                (0U) 
@@ -148,13 +152,17 @@ typedef struct
 /* OAR1 Register - Mask Defines */
 #define I2C_OAR1_ADD0_MASK            (1U << I2C_OAR1_ADD0_POS)
 #define I2C_OAR1_ADD_MASK             (1U << I2C_OAR1_ADD_POS)
-#define I2C_OAR1_ADD8                 (1U << I2C_OAR1_ADD8_POS)
-#define I2C_OAR1_ADD9                 (1U << I2C_OAR1_ADD9_POS)
+#define I2C_OAR1_ADD8_MASK            (1U << I2C_OAR1_ADD8_POS)
+#define I2C_OAR1_ADD9_MASK            (1U << I2C_OAR1_ADD9_POS)
+#define I2C_OAR1_BIT14_MASK           (1U << I2C_OAR1_BIT14_POS)
 #define I2C_OAR1_ADDMODE_MASK         (1U << I2C_OAR1_ADDMODE_POS)
 
 /* OAR2 Register - Mask Defines */
 #define I2C_OAR2_ENDUAL_MASK          (1U << I2C_OAR2_ENDUAL_POS)
 #define I2C_OAR2_ADD2_MASK            (1U << I2C_OAR2_ADD2_POS)
+
+/* SR1 Register - Mask Defines */
+#define I2C_DR_DR_MASK                (0xFFU << I2C_DR_DR_POS)
 
 /* SR1 Register - Mask Defines */
 #define I2C_SR1_SB_MASK               (1U << I2C_SR1_SB_POS)
@@ -214,6 +222,7 @@ typedef enum
     I2C_STATUS_NACK,
     I2C_STATUS_BUS_ERROR,
     I2C_STATUS_ARBITRATION_LOST,
+    I2C_STATUS_ACK_FAIL,
     I2C_STATUS_OVERRUN,
 
     I2C_STATUS_INVALID_PARAM,
@@ -502,7 +511,7 @@ typedef struct
 /* Initialization and Configuration Functions */
 I2C_Status_t I2C_Init(I2C_TypeDef *I2Cx, I2C_Config_t *i2c_cfg);
 void I2C_DeInit(I2C_TypeDef *I2Cx);
-I2C_Status_t I2C_SetOwnAddress(I2C_TypeDef *I2Cx, uint8_t addr);
+I2C_Status_t I2C_SetOwnAddress(I2C_TypeDef *I2Cx, uint16_t addr);
 void I2C_SetSpeed(I2C_TypeDef *I2Cx,
                   uint32_t pclk1_hz,
                   uint32_t scl_hz,
