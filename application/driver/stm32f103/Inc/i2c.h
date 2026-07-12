@@ -556,6 +556,15 @@ I2C_Status_t I2C_MasterTransmitReceive(I2C_TypeDef *I2Cx,
                                        uint8_t *rxData,
                                        uint16_t rxLen);
 
+/* slave Communication Functions */
+I2C_Status_t I2C_SlaveTransmit(I2C_TypeDef *I2Cx,
+                               uint8_t *pData,
+                               uint16_t len);
+
+I2C_Status_t I2C_SlaveReceive(I2C_TypeDef *I2Cx,
+                              uint8_t *pData,
+                              uint16_t len);
+
 /* Memory Read/Write Functions */
 I2C_Status_t I2C_MemWrite(I2C_TypeDef *I2Cx,
                           uint8_t slave_addr,
@@ -607,5 +616,12 @@ I2C_Status_t I2C_MasterReceive_DMA(I2C_TypeDef *I2Cx,
                                    uint8_t *pData,
                                    uint16_t len);   
 
+/* Interrupt-based Communication Functions */
+I2C_Status_t I2C_SlaveTransmit_IT(I2C_TypeDef *I2Cx,
+                                  uint16_t pData,
+                                  uint16_t len);
 
+I2C_Status_t I2C_SlaveReceive_IT(I2C_TypeDef *I2Cx,
+                                  uint16_t pData,
+                                  uint16_t len);
 #endif  /*    STM32F103xx_I2C_H     */
