@@ -78,27 +78,6 @@ typedef struct
  =====================================================================================================================================================================*/
 #define EXTI_LINE_ALL    0x000FFFFFU
 
-#define EXTI_LINE_0            (1U << EXTI_LINE_0_POS)
-#define EXTI_LINE_1            (1U << EXTI_LINE_1_POS)
-#define EXTI_LINE_2            (1U << EXTI_LINE_2_POS)
-#define EXTI_LINE_3            (1U << EXTI_LINE_3_POS)
-#define EXTI_LINE_4            (1U << EXTI_LINE_4_POS)
-#define EXTI_LINE_5            (1U << EXTI_LINE_5_POS)
-#define EXTI_LINE_6            (1U << EXTI_LINE_6_POS)
-#define EXTI_LINE_7            (1U << EXTI_LINE_7_POS)
-#define EXTI_LINE_8            (1U << EXTI_LINE_8_POS)
-#define EXTI_LINE_9            (1U << EXTI_LINE_9_POS)
-#define EXTI_LINE_10           (1U << EXTI_LINE_10_POS)
-#define EXTI_LINE_11           (1U << EXTI_LINE_11_POS)
-#define EXTI_LINE_12           (1U << EXTI_LINE_12_POS)
-#define EXTI_LINE_13           (1U << EXTI_LINE_13_POS)
-#define EXTI_LINE_14           (1U << EXTI_LINE_14_POS)
-#define EXTI_LINE_15           (1U << EXTI_LINE_15_POS)
-#define EXTI_LINE_16           (1U << EXTI_LINE_16_POS)
-#define EXTI_LINE_17           (1U << EXTI_LINE_17_POS)
-#define EXTI_LINE_18           (1U << EXTI_LINE_18_POS)
-#define EXTI_LINE_19           (1U << EXTI_LINE_19_POS)
-
 /*====================================================================================================================================================================
 |                                           DEFINE ENUMERATIONS
 =====================================================================================================================================================================*/
