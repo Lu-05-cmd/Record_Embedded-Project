@@ -115,12 +115,18 @@ typedef uint32_t EXTI_Line_t;
  */
 typedef enum
 {
-    EXTI_STATUS_OK              = 0x00U,       
-    EXTI_STATUS_ERROR           = 0x01U,        
-    EXTI_STATUS_INVALID_TRIGGER = 0x03U,   
-    EXTI_STATUS_INVALID_MODE    = 0x04U,    
-}EXTI_Status_t; 
+    EXTI_STATUS_OK                = 0x00U,
+    EXTI_STATUS_ERROR             = 0x01U,
 
+    EXTI_STATUS_INVALID_PARAM     = 0x02U,
+    EXTI_STATUS_INVALID_LINE      = 0x03U,
+    EXTI_STATUS_INVALID_PORT      = 0x04U,
+    EXTI_STATUS_INVALID_TRIGGER   = 0x05U,
+    EXTI_STATUS_INVALID_MODE      = 0x06U,
+
+    EXTI_STATUS_TIMEOUT           = 0x07U,
+    EXTI_STATUS_BUSY              = 0x08U,
+} EXTI_Status_t;
 /**
  * 
  * 
