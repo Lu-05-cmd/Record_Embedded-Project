@@ -588,7 +588,7 @@ I2C_Status_t I2C_ScanBus(I2C_TypeDef *I2Cx,
                          uint8_t *found_count);
 
 /* Bus Recovery Function */
-void I2C_BusRecover(I2C_TypeDef *I2Cx);
+I2C_Status_t I2C_BusRecover(I2C_TypeDef *I2Cx);
 
 /* Interrupt Handler Functions */
 void I2C_EV_IRQHandler(I2C_TypeDef *I2Cx);
