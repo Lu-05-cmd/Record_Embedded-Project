@@ -42,12 +42,12 @@ typedef struct
     volatile uint32_t FTSR;     // Falling Trigger Selection Register       - offset: 0x0C
     volatile uint32_t SWIER;    // Software Interrupt Event Register        - offset: 0x10
     volatile uint32_t PR;       // Pending Register                         - offset: 0x14
-} EXTI_TypeDef;
+} EXTI_TypeDef_t;
 
 /*====================================================================================================================================================================
  |                                       EXTI BASE ADDRESS
  =====================================================================================================================================================================*/
-#define EXTI ((EXTI_TypeDef *)0x40010800UL)
+#define EXTI ((EXTI_TypeDef_t *)0x40010800UL)
 
 /*====================================================================================================================================================================
  |                                 EXTI Line Position Definitions
@@ -76,7 +76,8 @@ typedef struct
 /*====================================================================================================================================================================
  |                                 EXTI Line Mask Definitions
  =====================================================================================================================================================================*/
-#define EXTI_LINE_ALL    0x000FFFFFU
+#define EXTI_CALLBACK_TABLE_SIZE   (16U)
+#define EXTI_LINE_ALL    (0x000FFFFFU)
 
 
 
@@ -183,9 +184,9 @@ typedef struct
 EXTI_Status_t EXTI_Init(const EXTI_Config_t *config);
 EXTI_Status_t EXTI_DeInit(void);
 
-void EXTI_IRQ_Handler(EXTI_Line_t line);
-void EXTI_RegisterCallback(EXTI_Line_t line, void (*callback)(void));
-void EXTI_UnregisterCallback(EXTI_Line_t line);
+EXTI_Status_t EXTI_RegisterCallback(EXTI_Line_t line, void (*callback)(void));
+EXTI_Status_t EXTI_IRQ_Handler(EXTI_Line_t line);
+EXTI_Status_t EXTI_UnregisterCallback(EXTI_Line_t line);
 
 void EXTI0_IRQHandler(void);    
 void EXTI1_IRQHandler(void);
